@@ -1,0 +1,6 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/browser",
+  "nodeVersion": "22.11.0"
+}
