@@ -11,6 +11,7 @@ import componentJson from '../../data/component.json'
 import type {
   ISettings,
   ISearchProps,
+  ISearchItemProps,
   ITagProp,
   InternalProps,
   ITagPropValues,
@@ -19,10 +20,70 @@ import type {
 } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
 
+const builtinSearchList: ISearchItemProps[] = [
+  {
+    name: '百度',
+    url: 'https://www.baidu.com/s?wd=${q}',
+    icon: 'https://www.baidu.com/favicon.ico',
+    placeholder: '输入关键词，百度一下',
+    blocked: false,
+    isInner: false,
+  },
+  {
+    name: 'Google',
+    url: 'https://www.google.com/search?q=${q}',
+    icon: 'https://www.google.com/favicon.ico',
+    placeholder: 'Search with Google',
+    blocked: false,
+    isInner: false,
+  },
+  {
+    name: '必应',
+    url: 'https://www.bing.com/search?q=${q}',
+    icon: 'https://www.bing.com/favicon.ico',
+    placeholder: '输入搜索内容',
+    blocked: false,
+    isInner: false,
+  },
+  {
+    name: '搜狗',
+    url: 'https://www.sogou.com/web?query=${q}',
+    icon: 'https://www.sogou.com/favicon.ico',
+    placeholder: '搜狗搜索',
+    blocked: false,
+    isInner: false,
+  },
+  {
+    name: '360 搜索',
+    url: 'https://www.so.com/s?q=${q}',
+    icon: 'https://www.so.com/favicon.ico',
+    placeholder: '360 搜索',
+    blocked: false,
+    isInner: false,
+  },
+]
+
+export function withSearchDefaults(data?: ISearchProps): ISearchProps {
+  const base = data || ({} as ISearchProps)
+  const list = Array.isArray(base.list) ? base.list.slice() : []
+  const nameSet = new Set(list.map((item) => item.name))
+
+  for (const item of builtinSearchList) {
+    if (!nameSet.has(item.name)) {
+      list.push(item)
+    }
+  }
+
+  return {
+    ...base,
+    list,
+  }
+}
+
 export const settings = signal<ISettings>(settingsJson as ISettings)
 
 export const search = signal<ISearchProps>(
-  isSelfDevelop ? ({} as ISearchProps) : searchJson,
+  withSearchDefaults(isSelfDevelop ? ({} as ISearchProps) : searchJson),
 )
 
 export const tagList = signal<Array<ITagPropValues>>(

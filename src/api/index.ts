@@ -12,7 +12,15 @@ import http, {
 } from '../utils/http'
 import qs from 'qs'
 import { encode } from 'js-base64'
-import { settings, navs, tagList, search, internal, component } from 'src/store'
+import {
+  settings,
+  navs,
+  tagList,
+  search,
+  internal,
+  component,
+  withSearchDefaults,
+} from 'src/store'
 import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin, getImageToken } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
@@ -98,7 +106,7 @@ export function getContentes() {
       tagList.set(res.data.tags)
       settings.set(res.data.settings)
       component.set(res.data.component)
-      search.set(res.data.search)
+      search.set(withSearchDefaults(res.data.search))
       event.emit('WEB_REFRESH')
       return res
     })
