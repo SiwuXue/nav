@@ -355,10 +355,6 @@ const main = async () => {
   }
 
   {
-    const banner1 =
-      'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner1.jpg'
-    const banner2 =
-      'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner2.jpg'
     const backgroundImg =
       'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
@@ -369,7 +365,7 @@ const main = async () => {
     settings.runtime ??= dayjs.tz().valueOf()
     settings.userActions ||= []
     settings.email ||= configJson.email || ''
-    settings.showGithub ??= true
+    settings.showGithub ??= false
     settings.showLanguage ??= true
     settings.showRate ??= true
     settings.openSearch ??= true
@@ -396,16 +392,7 @@ const main = async () => {
     settings.lightCardStyle ||= 'standard'
     settings.lightOverType ||= 'overflow'
     settings.lightFooterHTML ||= ''
-    settings.simThemeImages ||= [
-      {
-        src: banner1,
-        url: 'https://github.com/xjh22222228/nav',
-      },
-      {
-        src: banner2,
-        url: 'https://github.com/xjh22222228/nav',
-      },
-    ]
+    settings.simThemeImages ??= []
     settings.simThemeDesc ??=
       '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
     settings.simCardStyle ||= 'original'
@@ -421,23 +408,13 @@ const main = async () => {
 
     settings.superDocTitle ||= ''
     settings.superTitle ||= ''
-    const defImgs = [
-      {
-        src: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/nav-1717494364392-ad.jpg',
-        url: 'https://haokawx.lot-ml.com/Product/index/454266',
-      },
-      {
-        src: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
-        url: '',
-      },
-    ]
-    settings.superImages ??= defImgs
-    settings.lightImages ??= defImgs
+    settings.superImages ??= []
+    settings.lightImages ??= []
     if (!Array.isArray(settings.superImages)) {
-      settings.superImages = defImgs
+      settings.superImages = []
     }
     if (!Array.isArray(settings.lightImages)) {
-      settings.lightImages = defImgs
+      settings.lightImages = []
     }
     settings.sideTitle ||= ''
     settings.sideDocTitle ||= ''
@@ -446,16 +423,7 @@ const main = async () => {
     settings.sideThemeHeight ??= 0
     settings.sideThemeAutoplay ??= true
     settings.sideCollapsed ??= false
-    settings.sideThemeImages ||= [
-      {
-        src: banner2,
-        url: 'https://github.com/xjh22222228/nav',
-      },
-      {
-        src: banner1,
-        url: 'https://github.com/xjh22222228/nav',
-      },
-    ]
+    settings.sideThemeImages ??= []
     settings.shortcutTitle ??= ''
     settings.shortcutDocTitle ||= ''
     settings.shortcutDockCount ??= 6

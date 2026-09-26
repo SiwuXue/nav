@@ -99,7 +99,8 @@ export interface IHolidayProps {
 }
 
 export interface IComponentItemProps
-  extends Partial<Omit<INewsProps, 'bgColor'>>,
+  extends
+    Partial<Omit<INewsProps, 'bgColor'>>,
     Partial<ICalendarProps>,
     Partial<IOffWorkProps>,
     Partial<IImageProps>,
@@ -118,13 +119,7 @@ export interface IComponentProps {
 }
 
 export type ICardType =
-  | 'standard'
-  | 'column'
-  | 'example'
-  | 'retro'
-  | 'original'
-  | 'poster'
-  | 'icon'
+  'standard' | 'column' | 'example' | 'retro' | 'original' | 'poster' | 'icon'
 
 type OverType = 'overflow' | 'ellipsis'
 
