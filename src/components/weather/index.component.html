@@ -1,0 +1,61 @@
+<section class="weather" [attr.aria-label]="$t('_weatherTitle')">
+  <div class="weather-heading">
+    <div class="city-label">
+      <span class="city-icon" aria-hidden="true">◉</span>
+      <strong>{{ city?.name || $t('_weatherChooseCity') }}</strong>
+    </div>
+    <button type="button" class="change-city" (click)="toggleSearch()">
+      {{ city ? $t('_weatherChangeCity') : $t('_weatherChooseCity') }}
+    </button>
+  </div>
+
+  <div *ngIf="searchOpen || !city" class="city-picker">
+    <div class="search-row">
+      <input
+        type="search"
+        [value]="query"
+        [placeholder]="$t('_weatherSearchPlaceholder')"
+        [attr.aria-label]="$t('_weatherSearchPlaceholder')"
+        (input)="onSearch($event)"
+      />
+      <button type="button" (click)="locate()">
+        {{ $t('_weatherLocate') }}
+      </button>
+    </div>
+    <div *ngIf="searching" class="picker-status">{{ $t('_weatherSearching') }}</div>
+    <div *ngIf="searchError" class="picker-status">{{ searchError }}</div>
+    <div *ngIf="results.length" class="city-results">
+      <button type="button" *ngFor="let result of results" (click)="selectCity(result)">
+        <span>{{ result.name }}</span>
+        <small>{{ result.admin1 || result.country }}</small>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="city && !searchOpen" class="weather-body">
+    <div *ngIf="loading" class="weather-status">{{ $t('_weatherLoading') }}</div>
+    <div *ngIf="error" class="weather-status">
+      {{ error }}
+      <button type="button" (click)="loadWeather()">{{ $t('_weatherRetry') }}</button>
+    </div>
+    <ng-container *ngIf="forecast && !loading">
+      <div class="current-weather">
+        <span class="weather-emoji" aria-hidden="true">{{ weatherIcon(forecast.current.weather_code) }}</span>
+        <div>
+          <div class="temperature">{{ forecast.current.temperature_2m | number: '1.0-0' }}°</div>
+          <div class="condition">{{ weatherText(forecast.current.weather_code) }}</div>
+        </div>
+      </div>
+      <div class="forecast-days">
+        <div *ngFor="let day of [0, 1]; let i = index">
+          <span>{{ i ? $t('_weatherTomorrow') : $t('_weatherToday') }}</span>
+          <span aria-hidden="true">{{ weatherIcon(forecast.daily.weather_code[i]) }}</span>
+          <strong>{{ forecast.daily.temperature_2m_min[i] | number: '1.0-0' }}°–{{ forecast.daily.temperature_2m_max[i] | number: '1.0-0' }}°</strong>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <a class="weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
+    {{ $t('_weatherSource') }}
+  </a>
+</section>

@@ -15,6 +15,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { WebListComponent } from 'src/components/web-list/index.component'
 import { LogoComponent } from 'src/components/logo/logo.component'
+import { WeatherComponent } from 'src/components/weather/index.component'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -27,6 +28,7 @@ import event from 'src/utils/mitt'
     FixbarComponent,
     WebListComponent,
     LogoComponent,
+    WeatherComponent,
     RouterLink,
   ],
   selector: 'app-shortcut',
@@ -49,7 +51,6 @@ export default class ShortcutComponent {
   dayText = ''
   dockList: IWebProps[] = []
   iconSize: number = 0
-  frameLoad = false
 
   constructor(public jumpService: JumpService) {
     event.on('EVENT_DARK', (isDark: any) => {
@@ -153,9 +154,5 @@ export default class ShortcutComponent {
 
   trackByItemWeb(a: any, item: any) {
     return item.id
-  }
-
-  iframeLoad() {
-    this.frameLoad = true
   }
 }

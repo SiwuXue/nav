@@ -214,17 +214,6 @@
   }
 }
 
-.tianqi {
-  position: fixed;
-  top: 20px;
-  right: 24px;
-  z-index: 2;
-  overflow: hidden;
-  border-radius: 14px;
-  background: rgba(31, 41, 55, 0.82);
-  box-shadow: 0 10px 28px rgba(31, 41, 55, 0.14);
-}
-
 :host-context(.dark-container) {
   .shortcut::before {
     background: linear-gradient(115deg, rgba(12, 20, 33, 0.94), rgba(22, 36, 56, 0.88));
@@ -279,7 +268,4 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .tianqi {
-    display: none;
-  }
 }
