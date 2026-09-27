@@ -4,8 +4,9 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { NgStyle } from '@angular/common'
+import { RouterLink } from '@angular/router'
 import { isDark as isDarkFn, getDateTime, isMobile } from 'src/utils'
-import { settings } from 'src/store'
+import { navs, settings } from 'src/store'
 import type { IWebProps } from 'src/types'
 import { JumpService } from 'src/services/jump'
 import { $t } from 'src/locale'
@@ -26,6 +27,7 @@ import event from 'src/utils/mitt'
     FixbarComponent,
     WebListComponent,
     LogoComponent,
+    RouterLink,
   ],
   selector: 'app-shortcut',
   templateUrl: './index.component.html',
@@ -34,6 +36,7 @@ import event from 'src/utils/mitt'
 export default class ShortcutComponent {
   readonly $t = $t
   readonly settings = settings()
+  readonly navs = navs
   readonly isMobile = isMobile()
   readonly shortcutThemeImage = settings().shortcutThemeImages?.[0]?.['src']
   isDark: boolean = isDarkFn()

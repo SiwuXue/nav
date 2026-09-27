@@ -7,11 +7,37 @@
   padding: 10px 0;
   .input-wrapper {
     position: relative;
-    width: 650px;
+    width: min(650px, calc(100vw - 40px));
     max-width: 95%;
     background: #fff;
-    border-radius: 5px;
-    overflow: hidden;
+    border: 1px solid #e0e7f0;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(30, 54, 94, 0.07);
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus-within {
+      border-color: #6b96ec;
+      box-shadow: 0 0 0 4px rgba(49, 103, 223, 0.12), 0 12px 30px rgba(30, 54, 94, 0.1);
+    }
+
+    ::ng-deep .ant-input-group-wrapper,
+    ::ng-deep .ant-input-group,
+    ::ng-deep .ant-input-wrapper {
+      border-radius: inherit;
+    }
+
+    ::ng-deep .ant-input-group-addon {
+      border: 0;
+      border-radius: 16px 0 0 16px;
+      background: transparent;
+    }
+
+    ::ng-deep .ant-input-affix-wrapper {
+      min-height: 54px;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: none;
+    }
 
     input {
       padding-left: 10px;
@@ -34,6 +60,20 @@
 
     .search-icon {
       cursor: pointer;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 10px;
+      background: #edf3ff;
+      color: #3167df;
+
+      &:hover,
+      &:focus-visible {
+        background: #dce8ff;
+        color: #2455c2;
+      }
     }
   }
 

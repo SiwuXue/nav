@@ -1,143 +1,285 @@
-@media (max-width: 1280px) {
-  .shortcut {
-    --padding: 100px;
-  }
-}
-
-@media (max-width: 968px) {
-  .shortcut {
-    --padding: 70px;
-  }
-}
-
-@media (max-width: 768px) {
-  .shortcut {
-    --padding: 0;
-    --iconWidth: 45px;
-    --dockHeight: 61px;
-    .datetime {
-      font-size: 40px !important;
-    }
-    .title {
-      font-size: 22px !important;
-    }
-    .days {
-      font-size: 16px !important;
-    }
-    ::ng-deep {
-      .web-list {
-        .common-icon {
-          width: 50px !important;
-          height: 50px !important;
-          min-width: 50px !important;
-          min-height: 50px !important;
-        }
-        .name {
-          width: 75px !important;
-        }
-      }
-    }
-  }
-}
-
 .shortcut {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  overflow: auto;
+  background-color: #e9edf3;
+  background-position: center;
+  background-size: cover;
+  color: #172033;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, rgba(246, 249, 253, 0.94), rgba(236, 243, 250, 0.78));
+  }
+}
+
+.shortcut-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px clamp(24px, 5vw, 80px) 24px;
+}
+
+.shortcut-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 9px;
+  box-shadow: 0 7px 20px rgba(49, 103, 223, 0.18);
+}
+
+.shortcut-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: 72px 0 100px;
+}
+
+.time-block {
+  margin-bottom: 38px;
+}
+
+.datetime {
+  font-size: clamp(52px, 6vw, 82px);
+  font-weight: 650;
+  letter-spacing: -0.075em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.days {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.day-separator {
+  padding: 0 8px;
+}
+
+.hero-copy {
+  margin-bottom: 26px;
+
+  h1 {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 720;
+    letter-spacing: -0.055em;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 14px 0 0;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+}
+
+::ng-deep app-search .search-engine {
+  padding: 0;
+  align-items: stretch;
+
+  .input-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.browse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 12px;
+  background: #3167df;
+  box-shadow: 0 8px 20px rgba(49, 103, 223, 0.17);
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    background: #2455c2;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+.quick-hint {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.shortcut-links {
+  min-height: 100px;
+  margin-top: 54px;
+}
+
+.links-heading {
+  margin-bottom: 18px;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.category-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 54px;
+    padding: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.74);
+    box-shadow: 0 5px 18px rgba(42, 61, 97, 0.045);
+    color: #334155;
+    font-weight: 550;
+    backdrop-filter: blur(12px);
+
+    &:hover,
+    &:focus-visible {
+      border-color: #a9c4f5;
+      color: #2455c2;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+::ng-deep .shortcut-links .web-list {
+  padding: 0;
+  justify-content: flex-start;
+
+  .name {
+    color: #334155 !important;
+  }
+}
+
+.dock {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.02);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  user-select: none;
-  transition: all 0.1s linear;
-  &.hasComponent {
-    padding-top: 80px;
-  }
-  .box2 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .flex1 {
-    flex: 1;
-    padding: 0 var(--padding, 200px);
-    margin-bottom: 20px;
-    overflow: hidden;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .dock {
-    padding-bottom: 10px;
-    .dock-box {
-      background-color: rgba(255, 255, 255, 0.4);
-      border-radius: 16px;
-      height: var(--dockHeight, 66px);
-      padding: 0 8px;
-      padding-bottom: 8px;
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 12px 0px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 16px;
-      max-width: 100%;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-    .dock-item {
-      cursor: pointer;
-    }
-    ::ng-deep {
-      .icon {
-        background-color: transparent;
-      }
-      .common-icon {
-        width: var(--iconWidth, 50px);
-        height: var(--iconWidth, 50px);
-      }
-    }
+  width: 100%;
+
+  .dock-box {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 14px;
+    max-width: 100%;
+    padding: 10px 14px;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 45px rgba(42, 61, 97, 0.12);
+    backdrop-filter: blur(16px);
   }
 
-  .title {
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  ::ng-deep {
-    .name {
-      color: #fff !important;
-    }
-  }
-  .datetime {
-    font-size: 60px;
-    color: #fff;
-    line-height: 1;
-    font-family: text;
-    font-weight: bold;
-  }
-  .days {
-    font-size: 20px;
-    font-weight: bold;
-    color: rgba(249, 250, 251, 0.85);
-    margin-bottom: 15px;
-    margin-top: 5px;
-    font-family: text;
-  }
-  .margin {
-    margin: 0 10px;
+  .dock-item {
+    cursor: pointer;
   }
 }
 
 .tianqi {
   position: fixed;
-  top: 0;
-  right: 100px;
+  top: 20px;
+  right: 24px;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(31, 41, 55, 0.82);
+  box-shadow: 0 10px 28px rgba(31, 41, 55, 0.14);
+}
+
+:host-context(.dark-container) {
+  .shortcut::before {
+    background: linear-gradient(115deg, rgba(12, 20, 33, 0.94), rgba(22, 36, 56, 0.88));
+  }
+
+  .shortcut,
+  .hero-copy h1 {
+    color: #f5f8ff;
+  }
+
+  .days,
+  .hero-copy p,
+  .quick-hint {
+    color: #a5b4c8;
+  }
+
+  .links-heading,
+  ::ng-deep .shortcut-links .web-list .name {
+    color: #e2e8f0 !important;
+  }
+
+  .category-links a {
+    border-color: rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.78);
+    color: #e2e8f0;
+  }
+}
+
+@media (max-width: 768px) {
+  .shortcut-content {
+    padding: 22px 22px 30px;
+  }
+
+  .shortcut-main {
+    justify-content: flex-start;
+    padding: 100px 0 55px;
+  }
+
+  .time-block {
+    margin-bottom: 32px;
+  }
+
+  .quick-actions {
+    flex-wrap: wrap;
+  }
+
+  .shortcut-links {
+    margin-top: 44px;
+  }
+
+  .category-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tianqi {
+    display: none;
+  }
 }

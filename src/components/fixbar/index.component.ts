@@ -158,7 +158,9 @@ export class FixbarComponent {
   goTop() {
     const config: ScrollToOptions = {
       top: 0,
-      behavior: 'smooth',
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
     }
     if (this.selector) {
       const el = document.querySelector(this.selector)

@@ -58,14 +58,14 @@
     }
   }
   .desc {
-    color: rgba(0, 0, 0, 0.5);
+    color: #64748b;
     word-break: break-all;
     white-space: pre-wrap;
   }
   .title {
     white-space: normal;
     word-break: break-all;
-    color: rgba(0, 0, 0, 0.8);
+    color: #1e293b;
   }
 }
 
@@ -78,29 +78,40 @@
 .standard {
   $padding: 8px;
 
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  border: 1px solid #eee;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(35, 55, 90, 0.045);
+  border-radius: 14px;
+  border: 1px solid #e5eaf2;
   display: flex;
   flex-direction: column;
-  padding-top: 5px;
+  padding-top: 10px;
   transition: all 0.2s ease-out;
   background-color: #fff;
   &:hover {
     transform: translate(0, -3px);
+    border-color: #b9cef7;
+    box-shadow: 0 12px 28px rgba(35, 74, 143, 0.11);
   }
   .rate {
     padding: 0 $padding;
   }
+  .rating-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #b7791f;
+    font-size: 12px;
+    font-weight: 650;
+  }
   .middle {
     flex: 1;
-    padding: 8px 8px 0;
+    padding: 10px 14px 0;
   }
   .top {
-    margin-top: 5px;
+    margin-top: 9px;
     display: flex;
     align-items: center;
-    padding: 0 $padding;
+    padding: 0 72px 0 14px;
     .title {
       margin-left: $padding;
       font-weight: 500;
@@ -113,7 +124,7 @@
   }
   .actionbar {
     display: flex;
-    border-top: 1px solid #eee;
+      border-top: 1px solid #eef1f6;
     padding: 8px 0;
     margin-top: 10px;
     .action-item {
@@ -134,13 +145,13 @@
 
 .example2 {
   background-color: #fff;
-  padding: 8px 8px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 14px;
   cursor: pointer;
   box-shadow:
     0 0px 3px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  border: 1px solid transparent;
+  border: 1px solid #e5eaf2;
   transition: all 0.15s linear;
   color: #000;
   display: block;
@@ -176,13 +187,13 @@
 
 .original2 {
   background-color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 10px 14px;
+  border-radius: 12px;
   cursor: pointer;
   box-shadow:
     0 0px 3px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  border: 1px solid transparent;
+  border: 1px solid #e5eaf2;
   transition: all 0.15s linear;
   color: #000;
   display: block;
@@ -208,20 +219,21 @@
 // 其他主题下卡片不明显
 ::ng-deep .column-border {
   .column2 {
-    border: 1px solid transparent !important;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    border: 1px solid #e5eaf2 !important;
+    box-shadow: 0 4px 16px rgba(35, 55, 90, 0.045);
+    border-radius: 12px;
   }
 }
 .column2 {
   background-color: #fff;
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5eaf2;
   transition: all 0.15s linear;
   color: #000;
   display: block;
   &:hover {
-    background-color: #f2f3f5;
+    background-color: #f8fbff;
+    border-color: #b9cef7 !important;
     .action-btn {
       display: block;
     }
@@ -256,8 +268,8 @@
 // retro
 .retro2 {
   background-color: #fff;
-  border: 1px solid #eee;
-  border-radius: 4px;
+  border: 1px solid #e5eaf2;
+  border-radius: 14px;
   transition: transform 0.1s linear;
   &:hover {
     transform: translate(0, -3px);
@@ -294,7 +306,7 @@
 
 // poster
 .poster2 {
-  border-radius: 4px;
+  border-radius: 14px;
   cursor: pointer;
   background-color: #fff;
   padding-bottom: 10px;

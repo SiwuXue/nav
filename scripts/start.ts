@@ -90,9 +90,7 @@ const main = async () => {
       search.list = [
         {
           name: '站内',
-          icon:
-            settings.favicon ||
-            'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
+          icon: settings.favicon || 'assets/img/wuyou-mark.svg',
           placeholder: '站内搜索',
           blocked: false,
           isInner: true,
@@ -358,8 +356,7 @@ const main = async () => {
     const backgroundImg =
       'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
-    settings.favicon ??=
-      'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
+    settings.favicon ??= 'assets/img/wuyou-mark.svg'
     settings.language ||= 'zh-CN'
     settings.loading ??= 'random'
     settings.runtime ??= dayjs.tz().valueOf()
@@ -450,7 +447,7 @@ const main = async () => {
     settings.components ||= []
 
     settings.pwaEnable ??= false
-    settings.pwaName ??= '发现导航'
+    settings.pwaName ??= '无忧导航'
     settings.pwaIcon ||= ''
 
     // 替换CDN

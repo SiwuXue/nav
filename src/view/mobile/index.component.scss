@@ -1,9 +1,9 @@
-$bg-color: #fbfbfb;
+$bg-color: #fff;
 
 .app-page {
-  padding: 45px 0 0 0;
+  padding: 58px 0 0 0;
   min-height: 100vh;
-  background: #f6f6f6;
+  background: #f5f7fb;
   overflow: hidden;
 
   .header {
@@ -14,15 +14,15 @@ $bg-color: #fbfbfb;
     right: 0;
     text-align: center;
     background-color: $bg-color;
-    box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 4px 20px rgba(31, 52, 87, 0.06);
 
     .header-top {
       position: relative;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #e7ecf3;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px 0;
+      padding: 9px 0;
       .logo {
         display: inline-block;
         width: 40px;
@@ -43,7 +43,7 @@ $bg-color: #fbfbfb;
         margin-top: 6px;
         height: 2px;
         width: 25px;
-        background: #999;
+        background: #526174;
         transform-origin: right center;
         transition: 0.1s linear;
       }
@@ -65,7 +65,7 @@ $bg-color: #fbfbfb;
 
     .nav-open {
       display: none;
-      box-shadow: 1px 1px 5px #ccc;
+      box-shadow: 0 12px 25px rgba(31, 52, 87, 0.08);
       overflow: hidden;
       background: $bg-color;
       transition: 0.1s linear;
@@ -86,42 +86,43 @@ $bg-color: #fbfbfb;
       }
       &:active,
       &.active {
-        background: rgba(0, 0, 0, 0.05);
+        background: #edf3ff;
+        color: #2455c2;
       }
     }
   }
 
   .wrapper {
-    margin: 0 0 60px 0;
+    margin: 0 12px 60px;
 
     .children-nav {
       background: $bg-color;
-      margin: 0 0 15px 0;
-      padding: 10px 10px 5px;
+      margin: 0 0 18px 0;
+      padding: 10px;
       white-space: nowrap;
       overflow: auto;
-      box-shadow: 0 0 3px #ccc;
+      border: 1px solid #e7ecf3;
+      border-radius: 12px;
 
       .tag {
         position: relative;
         display: inline-block;
         font-size: 14px;
-        padding: 3px 5px;
-        margin: 0 3px 5px 0;
+        padding: 7px 11px;
+        margin: 0 4px 0 0;
+        border-radius: 8px;
         transition: background 0.1s linear;
         color: #333;
       }
 
       .active::after {
-        content: '';
-        position: absolute;
-        bottom: 5px;
-        left: 50%;
-        width: 50%;
-        transform: translateX(-50%);
-        height: 3px;
-        border-radius: 2px;
-        background: #20a0ff;
+        display: none;
+      }
+
+      .tag.active {
+        background: #edf3ff;
+        color: #2455c2;
+        font-weight: 650;
       }
     }
   }

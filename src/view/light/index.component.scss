@@ -4,12 +4,13 @@
   height: 100vh;
   padding-top: 0;
   overflow: hidden;
+  background: #f5f7fb;
   .light-box {
     display: flex;
     justify-content: center;
     height: 100%;
     margin: 0 auto;
-    column-gap: 20px;
+    column-gap: 24px;
     overflow: hidden;
   }
   .component-box {
@@ -22,20 +23,21 @@
 .homepage {
   height: 100%;
   position: relative;
-  background: #f9f9f9;
-  border-radius: 5px;
+  background: #fff;
+  border-radius: 18px;
   overflow: hidden;
   transition: 0.1s linear;
-  border: 1px solid transparent;
+  border: 1px solid #e7ecf3;
+  box-shadow: 0 12px 40px rgba(31, 52, 87, 0.05);
   display: flex;
   flex-direction: column;
 
   .top-nav {
-    padding: 10px 0;
+    padding: 12px 16px;
     overflow: none;
     overflow-x: auto;
     white-space: nowrap;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e9edf4;
     text-align: center;
     user-select: none;
 
@@ -44,21 +46,19 @@
       height: 40px;
       position: relative;
       padding: 0 15px;
-      color: #000;
+      color: #526174;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 10px;
       overflow: hidden;
       display: inline-flex;
       align-items: center;
+      &.active {
+        background: #edf3ff;
+        color: #2455c2;
+        font-weight: 650;
+      }
       &.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 20%;
-        right: 20%;
-        height: 3px;
-        border-radius: 2px;
-        background-color: rgb(16, 142, 233);
+        display: none;
       }
     }
   }
@@ -78,20 +78,23 @@
     min-width: $sidebarWidth;
     height: 98%;
     text-align: center;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #e9edf4;
     overflow: hidden;
     overflow-y: auto;
 
     .tag {
       position: relative;
       cursor: pointer;
-      padding: 11px 1px;
+      padding: 13px 5px;
+      margin: 5px;
+      border-radius: 9px;
       overflow-wrap: break-word;
       &.active {
-        color: #1890ff;
+        color: #2455c2;
+        background: #edf3ff;
         &::after,
         &::before {
-          content: '';
+          display: none;
           position: absolute;
           left: 0;
           width: 100%;
@@ -111,8 +114,27 @@
 
   .main {
     flex: 1;
-    padding-bottom: 50px;
+    padding: 12px 14px 50px;
     overflow: hidden;
     overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .index-wrapper {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .homepage {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .index-section .main {
+    padding: 12px 14px 48px;
+    overflow: visible;
   }
 }

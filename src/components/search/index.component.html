@@ -22,6 +22,7 @@
       <input
         type="text"
         nz-input
+        [attr.aria-label]="currentEngine.placeholder || $t('_searchEngines')"
         [placeholder]="currentEngine.placeholder || ''"
         [(ngModel)]="keyword"
         autofocus
@@ -61,10 +62,12 @@
     </ng-template>
 
     <ng-template #suffixIcon>
-      <i
-        class="search-icon iconfont iconsousuo dark-text"
+      <button
+        type="button"
+        class="search-icon iconfont iconsousuo"
+        [attr.aria-label]="$t('_searchEngines')"
         (click)="triggerSearch()"
-      ></i>
+      ></button>
     </ng-template>
     <ng-template #addOnBeforeTemplate>
       <nz-select

@@ -36,7 +36,7 @@
           <app-breadcrumb [data]="dataSource" />
         </div>
 
-        <div class="rate" *ngIf="settings.showRate">
+        <div class="rate" *ngIf="settings.showRate && isLogin">
           <nz-rate
             [ngModel]="dataSource.rate"
             [nzDisabled]="!isLogin"
@@ -45,6 +45,13 @@
           >
           </nz-rate>
         </div>
+        <span
+          class="rating-badge"
+          *ngIf="settings.showRate && !isLogin && dataSource.rate"
+          [attr.aria-label]="$t('_rating') + ' ' + dataSource.rate"
+        >
+          ★ {{ dataSource.rate }}
+        </span>
         <div
           (click)="jumpService.goUrl($event, dataSource.url)"
           class="cursor-pointer"

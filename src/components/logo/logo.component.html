@@ -7,7 +7,9 @@
     minWidth: size + 'px',
     minHeight: size + 'px',
     borderRadius: radius + 'px',
-    background: backgroundColor
+    background: backgroundColor,
+    color: foregroundColor,
+    fontSize: fallbackFontSize
   }"
 >
   {{ firstLetter }}
@@ -27,7 +29,7 @@
     }"
     draggable="false"
     loading="lazy"
-    [alt]="firstLetter"
+    alt=""
     (error)="onError()"
   />
 
@@ -40,7 +42,9 @@
       minWidth: size + 'px',
       minHeight: size + 'px',
       borderRadius: radius + 'px',
-      background: backgroundColor
+      background: backgroundColor,
+      color: foregroundColor,
+      fontSize: fallbackFontSize
     }"
   >
     {{ firstLetter }}

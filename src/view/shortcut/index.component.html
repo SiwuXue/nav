@@ -1,35 +1,55 @@
 <div
-  class="shortcut dark-bg-gary2"
+  class="shortcut"
   [class.hasComponent]="settings.shortcutThemeShowWeather"
   [ngStyle]="{ 'background-image': 'url(' + shortcutThemeImage + ')' }"
 >
-  <div class="box2">
-    <h1
-      *ngIf="settings.shortcutTitle"
-      class="title dark-white"
-      [class.text-black]="!shortcutThemeImage"
-      [ngStyle]="{ color: shortcutThemeImage ? '#fff' : '' }"
-    >
-      {{ settings.shortcutTitle }}
-    </h1>
+  <div class="shortcut-content">
+    <header class="shortcut-header">
+      <img class="brand-mark" src="assets/img/wuyou-mark.svg" alt="" />
+      <span>{{ settings.shortcutTitle || settings.title.split(' - ')[0] }}</span>
+    </header>
 
-    <div class="datetime">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
-    <div class="days">
-      <span
-        >{{ month }}{{ $t('_shortMonth') }}{{ date }}{{ $t('_shortDay') }}</span
-      >
-      <span class="margin">{{ dayText }}</span>
-    </div>
+    <main class="shortcut-main">
+      <div class="time-block" [attr.aria-label]="$t('_currentTime')">
+        <div class="datetime">{{ hours }}:{{ minutes }}</div>
+        <div class="days">
+          {{ month }}{{ $t('_shortMonth') }}{{ date }}{{ $t('_shortDay') }}
+          <span class="day-separator">·</span>{{ dayText }}
+        </div>
+      </div>
 
-    <app-search [showLogo]="false" />
+      <div class="hero-copy">
+        <h1>{{ $t('_shortcutWelcome') }}</h1>
+        <p>{{ $t('_shortcutIntro') }}</p>
+      </div>
 
-    <div class="flex1">
-      <app-web-list
-        size="large"
-        type="dock"
-        [dockCount]="settings.shortcutDockCount"
-      />
-    </div>
+      <app-search [showLogo]="false" />
+
+      <div class="quick-actions">
+        <a routerLink="/side" class="browse-button">
+          {{ $t('_browseNav') }}<span aria-hidden="true">↗</span>
+        </a>
+        <span class="quick-hint">{{ $t('_searchHint') }}</span>
+      </div>
+
+      <div class="shortcut-links">
+        <div class="links-heading">{{ $t('_exploreCategories') }}</div>
+        <app-web-list
+          size="large"
+          type="dock"
+          [dockCount]="settings.shortcutDockCount"
+        />
+        <div class="category-links">
+          <a
+            *ngFor="let item of navs().slice(0, 6)"
+            routerLink="/side"
+            [queryParams]="{ id: item.id }"
+          >
+            {{ item.title }} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </main>
 
     <div class="dock" *ngIf="dockList.length">
       <span
