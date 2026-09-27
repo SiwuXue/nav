@@ -29,6 +29,7 @@ const fallbackColors = [
 })
 export class LogoComponent implements OnChanges {
   @Input() src: string = ''
+  @Input() url: string = ''
   @Input() name: string = ''
   @Input() size: number = 35
   @Input() radius: number = 9
@@ -36,17 +37,35 @@ export class LogoComponent implements OnChanges {
   backgroundColor: string = fallbackColors[0].background
   foregroundColor: string = fallbackColors[0].foreground
   firstLetter: string = '↗'
-  isError: boolean = false
+  imageLoaded = false
+  imageSrc: string = ''
+  private imageCandidates: string[] = []
+  private candidateIndex = 0
 
   get fallbackFontSize(): string {
     return `${this.size > 0 ? Math.max(13, Math.round(this.size * 0.48)) : 18}px`
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['src']) {
-      this.isError = false
-    }
+    if (changes['src'] || changes['url']) this.updateImageCandidates()
     if (changes['name']) this.updateFallback()
+  }
+
+  private updateImageCandidates() {
+    const candidates = [this.src?.trim() || '']
+    try {
+      const url = new URL(this.url.replace(/^\^/, ''))
+      if (url.protocol === 'http:' || url.protocol === 'https:') {
+        candidates.push(new URL('/favicon.ico', url).href)
+        candidates.push(new URL('/apple-touch-icon.png', url).href)
+      }
+    } catch {
+      // Local routes and custom actions do not have a site favicon.
+    }
+    this.imageCandidates = [...new Set(candidates.filter(Boolean))]
+    this.candidateIndex = 0
+    this.imageSrc = this.imageCandidates[0] || ''
+    this.imageLoaded = false
   }
 
   private updateFallback() {
@@ -62,6 +81,12 @@ export class LogoComponent implements OnChanges {
   }
 
   onError() {
-    this.isError = true
+    this.candidateIndex += 1
+    this.imageSrc = this.imageCandidates[this.candidateIndex] || ''
+    this.imageLoaded = false
+  }
+
+  onLoad() {
+    this.imageLoaded = true
   }
 }

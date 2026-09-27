@@ -1,47 +1,17 @@
 <div
-  *ngIf="!src; else img"
-  class="circle common-icon"
+  class="logo-shell common-icon"
   [ngStyle]="{
     width: size === 0 ? '' : size + 'px',
     height: size === 0 ? '' : size + 'px',
     minWidth: size + 'px',
     minHeight: size + 'px',
-    borderRadius: radius + 'px',
-    background: backgroundColor,
-    color: foregroundColor,
-    fontSize: fallbackFontSize
+    borderRadius: radius + 'px'
   }"
 >
-  {{ firstLetter }}
-</div>
-
-<ng-template #img>
-  <img
-    *ngIf="!isError"
-    [src]="src"
-    class="icon common-icon"
-    [ngStyle]="{
-      width: size === 0 ? '' : size + 'px',
-      height: size === 0 ? '' : size + 'px',
-      minWidth: size + 'px',
-      minHeight: size + 'px',
-      borderRadius: radius + 'px'
-    }"
-    draggable="false"
-    loading="lazy"
-    alt=""
-    (error)="onError()"
-  />
-
   <div
-    *ngIf="isError"
-    class="circle common-icon"
+    *ngIf="!imageLoaded"
+    class="circle"
     [ngStyle]="{
-      width: size === 0 ? '' : size + 'px',
-      height: size === 0 ? '' : size + 'px',
-      minWidth: size + 'px',
-      minHeight: size + 'px',
-      borderRadius: radius + 'px',
       background: backgroundColor,
       color: foregroundColor,
       fontSize: fallbackFontSize
@@ -49,4 +19,15 @@
   >
     {{ firstLetter }}
   </div>
-</ng-template>
+  <img
+    *ngIf="imageSrc"
+    [src]="imageSrc"
+    [class.loaded]="imageLoaded"
+    class="icon"
+    draggable="false"
+    loading="lazy"
+    alt=""
+    (load)="onLoad()"
+    (error)="onError()"
+  />
+</div>

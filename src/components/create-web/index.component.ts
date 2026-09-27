@@ -277,8 +277,19 @@ export class CreateWebComponent {
 
       this.getting = true
       const res = await getWebInfo(url)
-      if (res['url'] != null && !iconVal) {
-        this.validateForm.get('icon')!.setValue(res['url'])
+      if (!iconVal) {
+        const origin = new URL(url).origin
+        const candidates = [
+          res['url'],
+          `${origin}/favicon.ico`,
+          `${origin}/apple-touch-icon.png`,
+        ].filter(Boolean) as string[]
+        for (const candidate of new Set(candidates)) {
+          if (await this.iconLoads(candidate)) {
+            this.validateForm.get('icon')!.setValue(candidate)
+            break
+          }
+        }
       }
       if (res['title'] != null && !titleVal) {
         this.validateForm.get('title')!.setValue(res['title'])
@@ -286,10 +297,29 @@ export class CreateWebComponent {
       if (res['description'] != null && !descVal) {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
-      this.getting = false
       this.inputUrlRef?.nativeElement?.blur()
       this.checkRepeat()
-    } catch {}
+    } catch {
+      // The website remains editable when metadata is unavailable.
+    } finally {
+      this.getting = false
+    }
+  }
+
+  private iconLoads(url: string): Promise<boolean> {
+    return new Promise((resolve) => {
+      const image = new Image()
+      const timer = setTimeout(() => finish(false), 3000)
+      const finish = (loaded: boolean) => {
+        clearTimeout(timer)
+        image.onload = null
+        image.onerror = null
+        resolve(loaded)
+      }
+      image.onload = () => finish(image.naturalWidth > 0)
+      image.onerror = () => finish(false)
+      image.src = url
+    })
   }
 
   addMoreUrl() {

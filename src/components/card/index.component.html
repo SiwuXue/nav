@@ -57,7 +57,7 @@
           class="cursor-pointer"
         >
           <div class="top">
-            <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
+            <app-logo [src]="dataSource.icon" [url]="dataSource.url" [name]="dataSource.name" />
             <div
               class="title ellipsis2 dark-white"
               [innerHTML]="dataSource.name"
@@ -144,7 +144,7 @@
         </div>
 
         <div class="wrapper ellipsis">
-          <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
+          <app-logo [src]="dataSource.icon" [url]="dataSource.url" [name]="dataSource.name" />
           <div
             class="right-box ellipsis"
             [title]="dataSource.__desc__ || dataSource.desc"
@@ -176,6 +176,7 @@
         <div class="wrapper ellipsis">
           <app-logo
             [src]="dataSource.icon"
+            [url]="dataSource.url"
             [name]="dataSource.name"
             [size]="30"
           />
@@ -215,6 +216,7 @@
             >
               <app-logo
                 [src]="dataSource.icon"
+                [url]="dataSource.url"
                 [name]="dataSource.name"
                 [size]="30"
               />
@@ -329,6 +331,7 @@
         </ng-template>
         <app-logo
           [src]="dataSource.icon"
+          [url]="dataSource.url"
           [name]="dataSource.__name__ || dataSource.name"
           [size]="iconSize"
           [radius]="10"
@@ -358,6 +361,7 @@
           <div class="title-bar">
             <app-logo
               [src]="dataSource.icon"
+              [url]="dataSource.url"
               [name]="dataSource.name"
               [size]="30"
             />
